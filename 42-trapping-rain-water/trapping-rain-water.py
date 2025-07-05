@@ -11,7 +11,6 @@ class Solution:
         maxRights[n-1] = height[n-1]
         for i in range(n-2, -1, -1):
             maxRights[i] = max(maxRights[i+1], height[i])
-        print(maxLefts, maxRights)
         water = 0
         for i, h in enumerate(height):
             currWater = min(maxLefts[i], maxRights[i]) - h
