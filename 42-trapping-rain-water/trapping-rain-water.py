@@ -7,16 +7,12 @@ class Solution:
 
         while l <= r:
             if maxLeft <= maxRight:
-                if maxLeft > height[l]:
-                    water += maxLeft - height[l]
-                else:
-                    maxLeft = height[l]
+                maxLeft = max(maxLeft, height[l])
+                water += maxLeft - height[l]
                 l += 1
             else:
-                if maxRight > height[r]:
-                    water += maxRight - height[r]
-                else:
-                    maxRight = height[r]
+                maxRight = max(maxRight, height[r])
+                water += maxRight - height[r]
                 r -= 1
 
         return water
