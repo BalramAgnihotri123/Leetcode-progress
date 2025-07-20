@@ -1,13 +1,18 @@
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        countFreq = {}
-        for num in nums:
-            countFreq[num] = countFreq.get(num, 0) + 1
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        countFreq = defaultdict(int)
 
-        kElemFreq = [[] for _ in range(len(nums) + 1)]
+        for val in nums:
+            countFreq[val] += 1
+
+        values = [[] for _ in range(len(nums) + 1)]
         for key, val in countFreq.items():
-            kElemFreq[val].append(key)
-        
-        kElemFreq = [item for sublist in kElemFreq for item in sublist]
+            values[val].append(key)
 
-        return kElemFreq[-k:]
+        res = []
+
+        for val in list(reversed(values)):
+            for v in val:
+                res.append(v)
+                if len(res) == k:
+                    return res
