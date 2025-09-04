@@ -1,11 +1,17 @@
-class Solution:
-    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        mapper = {}
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        seen = defaultdict()
 
-        for idx, num in enumerate(nums):
-            if num in mapper and idx - mapper[num] <= k:
+        for i, num in enumerate(nums):
+            if num in seen and i - seen[num] <= k:
                 return True
-
-            mapper[num] = idx
-
+            seen[num] = i
         return False
+
+
+        
